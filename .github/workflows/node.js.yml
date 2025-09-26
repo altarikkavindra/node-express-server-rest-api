@@ -28,6 +28,7 @@ jobs:
     - run: npm start &
     - run: sleep 5
     - run: curl http://localhost:3000
+    - run: curl -X POST -H "Content-Type:application/json" http://localhost:3000/messages -d '{"text":"Hi again, World"}'
 
     - name: configure directory   
       uses: appleboy/ssh-action@v1
@@ -60,4 +61,5 @@ jobs:
         script: |
           cd /var/www/nodejs
           npm install --production -y 
-          pm2 restart src || pm2 start npm --name src -- start       
+          pm2 restart src || pm2 start npm --name src -- start
+          
